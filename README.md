@@ -1,2 +1,1 @@
-# Mobile-development-project
-Mobile development final project
+# Mobile development final project
