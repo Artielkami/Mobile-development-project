@@ -1,0 +1,41 @@
+
+menu.png
+size: 1024,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+chooseninja
+  rotate: false
+  xy: 2, 2
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+quit
+  rotate: false
+  xy: 204, 2
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+setting
+  rotate: false
+  xy: 406, 2
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
+start
+  rotate: false
+  xy: 810, 12
+  size: 93, 40
+  orig: 93, 40
+  offset: 0, 0
+  index: -1
+store
+  rotate: false
+  xy: 608, 2
+  size: 200, 50
+  orig: 200, 50
+  offset: 0, 0
+  index: -1
