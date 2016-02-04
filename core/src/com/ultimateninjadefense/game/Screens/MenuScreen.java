@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ultimateninjadefense.game.Ninja.Ninja;
 import com.ultimateninjadefense.game.Scenes.MenuScene;
 import com.ultimateninjadefense.game.UNDGame;
 
@@ -37,19 +38,21 @@ public class MenuScreen extends ScreenAdapter {
         viewport = new FitViewport(UNDGame.WORLD_WIDTH, UNDGame.WORLD_HEIGHT, camera);
         shapeRenderer = new ShapeRenderer();
         Gdx.input.setInputProcessor(this.menu.stage);
+        game.ninja.setStatus(Ninja.WALKING);
     }
 
     @Override
     public void render(float delta) {
-        update();
+        update(delta);
         clearScreen();
         draw();
         game.ninja.update(delta);
-        game.ninja.draw(game.batch, 350, 150);
+        game.ninja.draw(game.batch);
         menu.draw();
     }
 
-    private void update() {
+    private void update(float delta) {
+        menu.stage.act(delta);
     }
 
     private void draw() {

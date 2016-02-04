@@ -6,9 +6,17 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.ultimateninjadefense.game.Bullet.Kunai.Kunai;
 import com.ultimateninjadefense.game.Ninja.Ninja;
 import com.ultimateninjadefense.game.Scenes.PlayScene;
 import com.ultimateninjadefense.game.UNDGame;
@@ -20,6 +28,7 @@ public class PlayScreen extends ScreenAdapter {
     private Camera camera;
     private ShapeRenderer shapeRenderer;
     private PlayScene playScene;
+    private Array<Kunai> k = new Array<Kunai>();
 
     public PlayScreen(UNDGame game) {
         this.game = game;
@@ -39,27 +48,48 @@ public class PlayScreen extends ScreenAdapter {
         shapeRenderer = new ShapeRenderer();
         game.ninja.setStatus(Ninja.RUNNING);
         playScene = new PlayScene(game);
+
+        Label fire = new Label("fire", new Label.LabelStyle(new BitmapFont(), Color.RED));
+        fire.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                k.add(new Kunai(game.getAssetManager(), UNDGame.WORLD_WIDTH + Kunai.COLLISION_WIDTH, (float) Math.random() * UNDGame.WORLD_HEIGHT));
+            }
+        });
+        playScene.getLayout().row();
+        playScene.getLayout().add(fire).center().expandY().expandX();
         Gdx.input.setInputProcessor(playScene.stage);
     }
 
     @Override
     public void render(float delta) {
-        update();
+        update(delta);
         clearScreen();
-        draw();
-        game.ninja.update(delta);
-        game.ninja.draw(game.batch, UNDGame.WORLD_WIDTH / 10, UNDGame.WORLD_HEIGHT / 8);
+
         playScene.draw();
+
+        for (Kunai kunai : k) {
+            kunai.draw(game.batch, 0);
+        }
+
+        game.ninja.update(delta);
+        game.ninja.draw(game.batch);
+        draw();
     }
 
-    private void update() {
+    private void update(float delta) {
+        playScene.stage.act(delta);
+        for (Kunai kunai : k) {
+            kunai.act(delta);
+        }
     }
 
     private void draw() {
         shapeRenderer.setProjectionMatrix(camera.projection);
         shapeRenderer.setTransformMatrix(camera.view);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.setColor(Color.BLACK);
+        shapeRenderer.rect((Ninja.GAME_POSITION.x * Ninja.NINJA_WIDTH), (Ninja.GAME_POSITION.y * Ninja.NINJA_HEIGHT), Ninja.NINJA_WIDTH, Ninja.NINJA_HEIGHT);
         shapeRenderer.end();
     }
 

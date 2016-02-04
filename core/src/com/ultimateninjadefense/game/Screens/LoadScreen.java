@@ -46,6 +46,8 @@ public class LoadScreen extends ScreenAdapter {
         game.getAssetManager().load("Ninja/LeafNinja/Run/run_assets.atlas", TextureAtlas.class);
         game.getAssetManager().load("Ninja/LeafNinja/Walk/walk.atlas", TextureAtlas.class);
         game.getAssetManager().load("background.png", Texture.class);
+        game.getAssetManager().load("Bullet/Kunai/kunai.png", Texture.class);
+        game.getAssetManager().load("Bullet/Shuriken/shuriken.png", Texture.class);
     }
 
     @Override

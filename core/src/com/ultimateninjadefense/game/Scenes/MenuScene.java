@@ -27,7 +27,7 @@ public class MenuScene {
     public Stage stage;
     private Viewport viewport;
     private SpriteBatch sb;
-
+    private Table layout;
     ImageButton pickNinjas;
     ImageButton store;
     ImageButton setting;
@@ -46,18 +46,18 @@ public class MenuScene {
         quit = new ImageButton(new TextureRegionDrawable(menuAtlas.findRegion("quit")));
         start = new ImageButton(new TextureRegionDrawable(menuAtlas.findRegion("start")));
 
-        final Table menu = new Table();
-        menu.setName("Left Menu");
-        menu.left().padLeft(10).right().left();
-        menu.setFillParent(true);
-        menu.add(pickNinjas).expandY().padTop(10);
-        menu.row();
-        menu.add(store).expandY();
-        menu.row();
-        menu.add(setting).expandY();
-        menu.row();
-        menu.add(quit).expandY().padBottom(10);
-        menu.add(start).bottom().right().expandX().pad(10);
+        layout = new Table();
+        layout.setName("Left Menu");
+        layout.left().padLeft(10).right().left();
+        layout.setFillParent(true);
+        layout.add(pickNinjas).expandY().padTop(10);
+        layout.row();
+        layout.add(store).expandY();
+        layout.row();
+        layout.add(setting).expandY();
+        layout.row();
+        layout.add(quit).expandY().padBottom(10);
+        layout.add(start).bottom().right().expandX().pad(10);
 
 
         start.addListener(new ActorGestureListener() {
@@ -107,7 +107,7 @@ public class MenuScene {
             }
         });
 
-        stage.addActor(menu);
+        stage.addActor(layout);
     }
 
     public void draw(){
