@@ -7,10 +7,11 @@
 4.  Trần Văn Hiệp
 
 ### Project description
-> 
-This is the main project for Mobile Development subject. 
->
+
+Đây lày project chính của nhóm cho môn học Mobile Development. Ultimate Ninja Defense là một game theo thể loại infinity run, cốt truyện bao gồm 1 ninja chạy liên tục và có nhiều vũ khí tự mọi phía bay tới, nhiệm vụ của người chơi là <thống nhất cách phòng thủ rồi ghi vào> để có thể bảo vệ ninja càng lâu càng tốt. Người chơi càng bảo vệ ninja càng lâu, càng dành được nhiều điểm, điểm này sẽ được tích lũy để mở thêm những nhân vật mới với chức năng đặc biệt hơn. 
+
 ### Project information
 > 
-asdasdsadsad
+* Build with Java using LibGDX framework
+* Run on Android devices
 >
